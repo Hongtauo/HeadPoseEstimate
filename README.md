@@ -47,6 +47,8 @@ print("头部姿态估计落点:", head_pose_estimator.F_pos)
 # 绘制示意图
 head_pose_estimator.plot()
 ```
+![alt text](image.png)
+
 ## 4. 方法说明
 set_args(keypoints)：设置输入关键点（COCO格式，归一化）。
 estimate_head_pose()：计算头部姿态角和落点。

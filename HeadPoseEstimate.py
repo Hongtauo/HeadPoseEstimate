@@ -126,9 +126,13 @@ class HeadPoseEstimate():
         # 计算头部姿态方向角
         self.F_pos = self._cal_estimate_head_pose_direction_angle(theta2)
 
-    def set_args(self,keypoints):
+    def set_args(self,keypoints,L):
         # 传入一个coco格式的keypoint，要求索引从0开始
-        self.keypoints = keypoints  
+        self.keypoints = keypoints
+        # 输入视线长度L
+        self.L = L
+        
+        # 设置所需参数
         self.nose_pos = keypoints[0]
         self.left_eye_pos = keypoints[1]
         self.right_eye_pos = keypoints[2]

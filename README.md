@@ -38,7 +38,7 @@ keypoints = np.array([
     [0.091306, 0.22964],
     [0.079228, 0.24624]
 ])
-head_pose_estimator.set_args(keypoints)
+head_pose_estimator.set_args(keypoints,L=1)
 
 # 姿态估计
 head_pose_estimator.estimate_head_pose()
@@ -50,7 +50,7 @@ head_pose_estimator.plot()
 ![alt text](image.png)
 
 ## 4. 方法说明
-set_args(keypoints)：设置输入关键点（COCO格式，归一化）。
+set_args(keypoints,L=1)：设置输入关键点（COCO格式，归一化的numpy数组），设置需要的视线长度L,由于关键点是相对坐标表示，建议视线长度设置为L=0.1。
 estimate_head_pose()：计算头部姿态角和落点。
 plot()：绘制骨架和头部朝向落点示意图。
 F_pos：头部朝向落点坐标（归一化）。

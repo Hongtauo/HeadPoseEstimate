@@ -116,7 +116,12 @@ class HeadPoseEstimate():
             y0 = self.left_ear_pos[1] if l1 > l2 else self.right_ear_pos[1]
             # 计算头部姿态的象限角 θ
 
-        theta1 = np.arctan(y0/(x0*((self.nose_pos[1] - y0) / (self.nose_pos[0]-x0))))
+        # theta1 = np.arctan(y0/(x0*((self.nose_pos[1] - y0) / (self.nose_pos[0]-x0))))
+        # 进行平滑，避免除零错误
+        denominator = x0 * ((self.nose_pos[1] - y0) / (self.nose_pos[0] - x0))
+        denominator = denominator if abs(denominator) > 1e-8 else 1e-8  # 防止分母为零
+        theta1 = np.arctan(y0 / denominator)
+        
         # 转为角度
         theta1 = np.degrees(theta1)
 
